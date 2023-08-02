@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:project/packages.dart';
 
 import 'package:project/src/login/login_page.dart';
+import 'package:project/src/login/create_account.dart';
+import 'package:project/src/login/signup_page.dart';
 import 'package:project/src/profile/profile_page.dart';
 
 void main() {
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
       // please add routes here
       routes: {
         '/login': (context) => const LoginPage(),
+        '/login/signup': (context) => const SignupPage(),
+        '/login/create_account': (context) => const CreateAccount(),
         '/home/profile': (context) => const ProfilePage(),
       },
     );
