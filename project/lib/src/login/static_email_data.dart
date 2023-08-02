@@ -12,10 +12,12 @@ String universityTranslator(String domain) {
 }
 
 String? emailValidator(String email) {
-  final emailParts = email.split("@");
-  if (emailParts.length != 2) {
-    return "正しいメールアドレスを入力してください";
+  // validationg email using regex
+  final RegExp regex = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+  if (!regex.hasMatch(email)) {
+    return "メールアドレスの形式が不正です";
   }
+  final emailParts = email.split("@");
 
   final domain = emailParts[1];
   final domainSplitted = domain.split(".");
