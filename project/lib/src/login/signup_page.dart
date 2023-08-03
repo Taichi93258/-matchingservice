@@ -51,6 +51,9 @@ class _SignupPageState extends State<SignupPage> {
                       }
                       return null;
                     },
+                    decoration: const InputDecoration(
+                      hintText: "パスワードを入力してください",
+                    ),
                   ),
 
                   ElevatedButton(
@@ -91,7 +94,8 @@ class _SignupPageState extends State<SignupPage> {
             ),
             const SizedBox(height: 50),
             ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/login'),
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, '/login'),
                 child: const Text("アカウントにログインする"))
           ],
         )),
