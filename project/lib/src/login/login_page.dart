@@ -112,8 +112,18 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 50),
           ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/login/signup'),
-              child: const Text("アカウントを作成する"))
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, '/login/signup'),
+              child: const Text("アカウントを作成する")),
+          const SizedBox(height: 50),
+          ElevatedButton(
+              onPressed: () => Navigator.pushReplacementNamed(
+                  context, '/home/profile', arguments: null),
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.deepOrange[100])),
+              child: const Text("一時的なバックドアでログインする",
+                  style: TextStyle(fontSize: 10, color: Colors.red))),
         ],
       )),
     );

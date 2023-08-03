@@ -9,10 +9,17 @@ class CreateAccount extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Create Account"),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
-            Text("Create Account"),
+            const Text("Create Account"),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, '/home/profile'),
+                child: const Text("Create Account")),
           ],
         ),
       ),

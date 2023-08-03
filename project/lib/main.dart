@@ -3,7 +3,7 @@ import 'package:project/packages.dart';
 import 'package:project/src/login/login_page.dart';
 import 'package:project/src/login/create_account.dart';
 import 'package:project/src/login/signup_page.dart';
-import 'package:project/src/profile/profile_page.dart';
+import 'package:project/src/home/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
