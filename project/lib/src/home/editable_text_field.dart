@@ -2,29 +2,45 @@ import 'package:project/packages.dart';
 
 class EditableTextField extends StatefulWidget {
   const EditableTextField(
-      {Key? key, this.initialText, this.onSubmitted, this.editable = true})
+      {Key? key,
+      this.initialText,
+      this.onSubmitted,
+      this.onFocused,
+      this.editable = true,
+      this.multiline = false,
+      this.isEditing = false})
       : super(key: key);
 
   final String? initialText;
   final void Function(String)? onSubmitted;
+  final Function? onFocused;
   final bool editable;
-
+  final bool multiline;
+  final bool isEditing;
   @override
   State<EditableTextField> createState() => _EditableTextFieldState();
 }
 
 class _EditableTextFieldState extends State<EditableTextField> {
-  bool _isEditing = false;
   final TextEditingController _editingController = TextEditingController();
+  late bool _isEditing;
 
   @override
   void initState() {
     super.initState();
     _editingController.text = widget.initialText ?? "";
+    _isEditing = widget.isEditing;
+  }
+
+  @override
+  void didUpdateWidget(covariant EditableTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _isEditing = widget.isEditing;
   }
 
   @override
   Widget build(BuildContext context) {
+    infoLog('isEditing: $_isEditing');
     return _isEditing ? _editingMode() : _nonEditingMode();
   }
 
@@ -33,8 +49,8 @@ class _EditableTextFieldState extends State<EditableTextField> {
       children: [
         Expanded(
           child: TextField(
-            keyboardType: TextInputType.multiline,
-            maxLines: 5,
+            keyboardType: widget.multiline ? TextInputType.multiline : null,
+            maxLines: widget.multiline ? 5 : 1,
             controller: _editingController,
             style: const TextStyle(fontSize: 20),
           ),
@@ -42,7 +58,6 @@ class _EditableTextFieldState extends State<EditableTextField> {
         IconButton(
           onPressed: () {
             setState(() {
-              _isEditing = false;
               if (widget.onSubmitted != null) {
                 widget.onSubmitted!(_editingController.text);
               }
@@ -67,9 +82,10 @@ class _EditableTextFieldState extends State<EditableTextField> {
           IconButton(
             onPressed: () {
               if (widget.editable) {
-                setState(() {
-                  _isEditing = true;
-                });
+                if (widget.onFocused != null) {
+                  widget.onFocused!();
+                  infoLog("onFocused called");
+                }
               }
             },
             icon: const Icon(Icons.edit),
