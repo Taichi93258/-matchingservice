@@ -1,4 +1,5 @@
 class Profile {
+  static const int dataLength = 8;
   String name;
   String university;
   String faculty; //学部
@@ -7,6 +8,52 @@ class Profile {
   DateTime birthday;
   String introduction;
   String imageURL;
+
+  String byId(int id) {
+    switch (id) {
+      case 0:
+        return name;
+      case 1:
+        return university;
+      case 2:
+        return faculty;
+      case 3:
+        return department;
+      case 4:
+        return grade;
+      case 5:
+        return birthdayFormatted;
+      case 6:
+        return introduction;
+      case 7:
+        return imageURL;
+      default:
+        return "";
+    }
+  }
+
+  static int getId(String name) {
+    switch (name) {
+      case "name":
+        return 0;
+      case "university":
+        return 1;
+      case "faculty":
+        return 2;
+      case "department":
+        return 3;
+      case "grade":
+        return 4;
+      case "birthday":
+        return 5;
+      case "introduction":
+        return 6;
+      case "imageURL":
+        return 7;
+      default:
+        return -1;
+    }
+  }
 
   get birthdayFormatted =>
       "${birthday.year}年${birthday.month}月${birthday.day}日";
@@ -43,6 +90,17 @@ class Profile {
         'introduction': introduction,
         'imageURL': imageURL,
       };
+
+  List<String> get indexed => [
+        name,
+        university,
+        faculty,
+        department,
+        grade,
+        birthdayFormatted,
+        introduction,
+        imageURL,
+      ];
 
   Profile.master()
       : name = "萩原麗生",
