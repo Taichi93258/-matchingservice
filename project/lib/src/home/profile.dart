@@ -79,7 +79,7 @@ class Profile {
         introduction: json['introduction'] as String,
         imageURL: json['imageURL'] as String);
   }
-
+  // convert to json
   Map<String, dynamic> get json => {
         'name': name,
         'university': university,
